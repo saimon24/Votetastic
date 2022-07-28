@@ -37,13 +37,16 @@ export class LoginComponent implements OnInit {
 
   async register() {
     console.log(this.form.value);
-    const { session, error } = await this.auth.createAccount(this.form.value);
+    const { session, error, user } = await this.auth.createAccount(
+      this.form.value
+    );
     console.log(error);
 
     if (error) {
       // TODO show error alert
     } else {
       console.log(session);
+      console.log(user);
 
       this.router.navigateByUrl('/app', { replaceUrl: true });
     }
