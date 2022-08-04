@@ -47,4 +47,9 @@ export class AuthService {
   getCurrentUser() {
     return this.currentUser.asObservable();
   }
+
+  async logout() {
+    this.currentUser.next(false);
+    return this.supabase.auth.signOut();
+  }
 }

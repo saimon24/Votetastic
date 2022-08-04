@@ -1,0 +1,59 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+<header class="bg-indigo-600">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
+    <div
+      class="w-full py-6 flex items-center justify-between border-b border-indigo-500 lg:border-none"
+    >
+      <div class="flex items-center">
+        <span class="sr-only">Workflow</span>
+        <img
+          class="h-10 w-auto"
+          src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white"
+          alt=""
+        />
+        <div class="hidden ml-10 space-x-8 lg:block">
+          <a
+            routerLink="/app"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="text-base font-medium text-white hover:text-indigo-50"
+          >
+            Votings
+          </a>
+          <a
+            routerLink="/app/settings"
+            routerLinkActive="active-link"
+            class="text-base font-medium text-white hover:text-indigo-50"
+          >
+            Settings
+          </a>
+        </div>
+      </div>
+      <div class="ml-10 space-x-4">
+        <button
+          (click)="signOut()"
+          class="inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75"
+        >
+          Sign out
+        </button>
+      </div>
+    </div>
+    <div class="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
+      <a href="#" class="text-base font-medium text-white hover:text-indigo-50">
+        Solutions
+      </a>
+
+      <a href="#" class="text-base font-medium text-white hover:text-indigo-50">
+        Pricing
+      </a>
+
+      <a href="#" class="text-base font-medium text-white hover:text-indigo-50">
+        Docs
+      </a>
+
+      <a href="#" class="text-base font-medium text-white hover:text-indigo-50">
+        Company
+      </a>
+    </div>
+  </nav>
+</header>
