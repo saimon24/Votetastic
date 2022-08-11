@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 export class VotingsDetailsComponent implements OnInit {
   voting: any = null;
   form: FormGroup;
+  options: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,8 @@ export class VotingsDetailsComponent implements OnInit {
       description: [''],
       public: [false],
     });
+
+    this.options = this.fb.group({});
   }
 
   async ngOnInit() {
@@ -54,4 +57,16 @@ export class VotingsDetailsComponent implements OnInit {
     this.toaster.info('Voting deleted!');
     this.router.navigateByUrl('/app');
   }
+
+  getNewOption() {
+    return this.fb.group({
+      title: '',
+    });
+  }
+
+  addOption() {
+    // this.options.
+  }
+
+  saveOptions() {}
 }
