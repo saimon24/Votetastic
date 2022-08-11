@@ -1,6 +1,7 @@
 import { DataService } from '../../services/data.service';
 import { Component, OnInit } from '@angular/core';
-import { Voting } from "../../types/votings";
+import { Voting } from '../../types/votings';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-votings-list',
@@ -10,7 +11,7 @@ import { Voting } from "../../types/votings";
 export class VotingsListComponent implements OnInit {
   votings: Voting[] = [];
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadVotings();
@@ -21,10 +22,10 @@ export class VotingsListComponent implements OnInit {
   }
 
   async startVoting() {
-    const data = await this.dataService.startVoting();
-    console.log(
-      '🚀 ~ file: votings-list.component.ts ~ line 16 ~ VotingsListComponent ~ startVoting ~ data',
-      data
-    );
+    const record = await this.dataService.startVoting();
+
+    if (!record.error && record.data?.length) {
+      this.router.navigateByUrl(`/app/${record.data[0].id}`);
+    }
   }
 }

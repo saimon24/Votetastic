@@ -11,16 +11,52 @@
         <button
           (click)="startVoting()"
           type="button"
-          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          class="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Start voting
         </button>
 
-        <div *ngFor="let voting of votings">
-          {{ voting | json }}
-        </div>
+        <!-- <div
+          class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6"
+          *ngFor="let voting of votings"
+        >
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            {{ voting.title }}
+          </h3>
+          <p>{{ voting.voting_question }}</p>
+          <p>{{ voting.creator_id }}</p>
+        </div> -->
+        <ul role="list" class="divide-y divide-gray-200">
+          <li
+            *ngFor="let voting of votings"
+            class="relative bg-white py-5 px-4 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
+          >
+            <div class="flex justify-between space-x-3">
+              <div class="min-w-0 flex-1">
+                <a [routerLink]="[voting.id]" class="block focus:outline-none">
+                  <span class="absolute inset-0" aria-hidden="true"></span>
+                  <p class="text-sm font-medium text-gray-900 truncate">
+                    {{ voting.title }}
+                  </p>
+                  <p class="text-sm text-gray-500 truncate">
+                    {{ voting.voting_question }}
+                  </p>
+                </a>
+              </div>
+              <!-- <time
+                datetime="2021-01-27T16:35"
+                class="flex-shrink-0 whitespace-nowrap text-sm text-gray-500"
+                >1d ago</time
+              > -->
+            </div>
+            <div class="mt-1">
+              <p class="line-clamp-2 text-sm text-gray-600">
+                {{ voting.description }}
+              </p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <!-- /End replace -->
     </div>
   </main>
 </div>
