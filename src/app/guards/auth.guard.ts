@@ -1,8 +1,9 @@
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
+import { CurrentUser } from "../types/currentUser";
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class AuthGuard implements CanActivate {
     return this.authService.getCurrentUser().pipe(
       filter((val) => val !== null),
       take(1),
-      map((isAuthenticated: any) => {
+      map((isAuthenticated: CurrentUser) => {
         if (isAuthenticated) {
           return true;
         } else {

@@ -1,5 +1,6 @@
-import { DataService } from './../../services/data.service';
+import { DataService } from '../../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Voting } from "../../types/votings";
 
 @Component({
   selector: 'app-votings-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./votings-list.component.scss'],
 })
 export class VotingsListComponent implements OnInit {
-  votings: any[] = [];
+  votings: Voting[] = [];
 
   constructor(private dataService: DataService) {}
 
