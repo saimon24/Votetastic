@@ -1,27 +1,24 @@
-# VotingApp
+# Votetastic, make your voting fantastic
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.5.
+_**Work in progress...**_
 
-## Development server
+This is a community project leaded by Simon Grimm working on it live from his Youtube channel.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Overall description
+We are making an app for voting futures projects to develop live togheter. 
+Suscribe and join the live stream weekly on [Simon's YouTube channel](https://www.youtube.com/c/SimonGrimmDev)
 
-## Code scaffolding
+## Technologies
+We are using Angular 14, Tailwind and Supabase as our stack. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Implementation
+The work is uploaded and implemented on [Netlify](https://classy-kitsune-3f9088.netlify.app/), use de dummy account to make your tests.
 
-## Build
+![image](https://user-images.githubusercontent.com/40073861/184167833-9351f3c4-86ac-45ac-bc57-d9932e6126bb.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Community
+Fork this code and make your contribution. You can also follow and learn from Simon's work on
+- [Devdactic](http://devdactic.com/devblog/)
+- [Ionic Academy](https://ionicacademy.com/)
+- [Twitch](https://www.twitch.tv/captainionic)
