@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
-import { CurrentUser } from "../types/currentUser";
+import { CurrentUser } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
