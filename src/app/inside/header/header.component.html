@@ -39,20 +39,13 @@
       </div>
     </div>
     <div class="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
-      <a href="#" class="text-base font-medium text-white hover:text-indigo-50">
-        Solutions
+      <a routerLink="/app" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+        class="text-base font-medium text-white hover:text-indigo-50">
+        Votings
       </a>
-
-      <a href="#" class="text-base font-medium text-white hover:text-indigo-50">
-        Pricing
-      </a>
-
-      <a href="#" class="text-base font-medium text-white hover:text-indigo-50">
-        Docs
-      </a>
-
-      <a href="#" class="text-base font-medium text-white hover:text-indigo-50">
-        Company
+      <a routerLink="/app/settings" routerLinkActive="active-link"
+        class="text-base font-medium text-white hover:text-indigo-50">
+        Settings
       </a>
     </div>
   </nav>
