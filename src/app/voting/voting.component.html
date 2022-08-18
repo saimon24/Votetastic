@@ -1,0 +1,29 @@
+<div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md" *ngIf="voting">
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      {{ voting.title }}
+      <p class="text-gray-500 text-xl font-medium">
+        {{ voting.voting_question }}
+      </p>
+    </h2>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md" *ngIf="voting">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div>
+        <h3></h3>
+        {{ voting.description }}
+      </div>
+    </div>
+
+    <div class="flex gap-4 justify-center mt-10">
+      <div
+        (click)="vote(option)"
+        class="bg-indigo-600 text-white py-4 px-4 rounded-lg hover:cursor-pointer hover:bg-indigo-800"
+        *ngFor="let option of options"
+      >
+        {{ option.title }}
+      </div>
+    </div>
+  </div>
+</div>

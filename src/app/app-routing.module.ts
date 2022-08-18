@@ -1,3 +1,4 @@
+import { VotingComponent } from './voting/voting.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./inside/inside.module').then((m) => m.InsideModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'voting/:id',
+    component: VotingComponent,
   },
 ];
 

@@ -46,14 +46,7 @@ export class VotingsDetailsComponent implements OnInit {
 
     if (id) {
       this.voting = await (await this.dataService.getVotingDetails(+id)).data;
-      console.log('got this: ', this.voting);
-
       const options = await (await this.dataService.getVotingOptions(+id)).data;
-      console.log(
-        '🚀 ~ file: votings-details.component.ts ~ line 52 ~ VotingsDetailsComponent ~ ngOnInit ~ options',
-        options
-      );
-
       options?.map((item) => {
         const option = this.fb.group({
           title: [item.title, Validators.required],
