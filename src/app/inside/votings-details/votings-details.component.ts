@@ -9,6 +9,7 @@ import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Voting } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-votings-details',
@@ -16,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./votings-details.component.scss'],
 })
 export class VotingsDetailsComponent implements OnInit {
-  voting: any = null;
+  voting: Voting = null!;
   form: FormGroup;
   formOptions: FormGroup;
 

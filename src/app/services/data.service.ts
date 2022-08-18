@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
+import { Voting } from '../interfaces';
 
 export const TABLE_VOTINGS = 'votings';
 
@@ -36,7 +37,7 @@ export class DataService {
     return this.supabase.from(TABLE_VOTINGS).select('*').eq('id', id).single();
   }
 
-  async updateVotingDetails(voting: any, id: number) {
+  async updateVotingDetails(voting: Voting, id: number) {
     return this.supabase
       .from(TABLE_VOTINGS)
       .update(voting)
