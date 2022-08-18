@@ -1,3 +1,4 @@
+import { Observable, zip } from 'rxjs';
 import {
   FormGroup,
   FormGroupName,
@@ -47,6 +48,20 @@ export class VotingsDetailsComponent implements OnInit {
       this.voting = await (await this.dataService.getVotingDetails(+id)).data;
       console.log('got this: ', this.voting);
 
+      const options = await (await this.dataService.getVotingOptions(+id)).data;
+      console.log(
+        '🚀 ~ file: votings-details.component.ts ~ line 52 ~ VotingsDetailsComponent ~ ngOnInit ~ options',
+        options
+      );
+
+      options?.map((item) => {
+        const option = this.fb.group({
+          title: [item.title, Validators.required],
+          id: item.id,
+        });
+        this.options.push(option);
+      });
+
       this.form.patchValue(this.voting);
     }
   }
@@ -70,16 +85,37 @@ export class VotingsDetailsComponent implements OnInit {
     const option = this.fb.group({
       title: ['', Validators.required],
       id: null,
+      voting_id: this.voting.id,
     });
 
     this.options.push(option);
   }
 
-  deleteOption(index: number) {
+  async deleteOption(index: number) {
+    const control = this.options.at(index);
+    const id = control.value.id;
+    await this.dataService.deleteVotingOption(id);
     this.options.removeAt(index);
   }
 
   saveOptions() {
     console.log('SAVE: ', this.formOptions.value);
+    // TODO: Add loading
+
+    const obs = [];
+    for (let entry of this.formOptions.value.options) {
+      if (!entry.id) {
+        const newObs = this.dataService.addVotingOption(entry);
+        obs.push(newObs);
+      } else {
+        const newObs = this.dataService.updateVotingOption(entry);
+        obs.push(newObs);
+      }
+    }
+
+    zip(obs).subscribe((res) => {
+      console.log('AFTER ADD: ', res);
+      this.toaster.success('Voting updated!');
+    });
   }
 }

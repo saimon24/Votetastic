@@ -128,6 +128,9 @@
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
           <form [formGroup]="formOptions" class="flex flex-col">
             <div formArrayName="options">
+              <div *ngIf="!options.controls.length">
+                Add your voting options
+              </div>
               <div *ngFor="let option of options.controls; let i = index">
                 <div class="flex mb-2" [formGroupName]="i">
                   <input
@@ -172,7 +175,8 @@
 
           <button
             (click)="saveOptions()"
-            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            [disabled]="!formOptions.valid"
+            class="inline-flex disabled:bg-indigo-200 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Save
           </button>

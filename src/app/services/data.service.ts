@@ -4,6 +4,16 @@ import { environment } from 'src/environments/environment';
 import { Voting } from '../interfaces';
 
 export const TABLE_VOTINGS = 'votings';
+export const TABLE_VOTING_OPTIONS = 'voting_options';
+
+export interface VotingOption {
+  id?: number;
+  creator_id?: string;
+
+  voting_id: number;
+  title: string;
+  votes: number;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -47,5 +57,35 @@ export class DataService {
 
   async deleteVoting(id: number) {
     return this.supabase.from(TABLE_VOTINGS).delete().eq('id', id).single();
+  }
+
+  async getVotingOptions(votingId: number) {
+    return this.supabase
+      .from(TABLE_VOTING_OPTIONS)
+      .select('*')
+      .eq('voting_id', votingId);
+  }
+
+  async addVotingOption(option: VotingOption) {
+    option.creator_id = this.supabase.auth.user()?.id;
+    option.votes = 0;
+    delete option.id;
+
+    return this.supabase.from(TABLE_VOTING_OPTIONS).insert(option);
+  }
+
+  async updateVotingOption(option: VotingOption) {
+    return this.supabase
+      .from(TABLE_VOTING_OPTIONS)
+      .update({ title: option.title })
+      .eq('id', option.id);
+  }
+
+  async deleteVotingOption(id: number) {
+    return this.supabase
+      .from(TABLE_VOTING_OPTIONS)
+      .delete()
+      .eq('id', id)
+      .single();
   }
 }
