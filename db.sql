@@ -70,3 +70,13 @@ create policy "Users can update their options" on voting_options for
     update using (auth.uid() = creator_id);
 
 
+
+
+create function increment (row_id int) 
+returns void as
+$$
+  update voting_options 
+  set votes = votes + 1
+  where id = row_id
+$$ 
+language sql volatile;

@@ -79,4 +79,8 @@ export class DataService {
       .eq('id', id)
       .single();
   }
+
+  voteForOption(id: string) {
+    return this.supabase.rpc('increment', { row_id: id });
+  }
 }

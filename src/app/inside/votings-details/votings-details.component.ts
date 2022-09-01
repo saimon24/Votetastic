@@ -109,11 +109,15 @@ export class VotingsDetailsComponent implements OnInit {
   }
 
   copyUrlToClipboard() {
-    this.clipboard.copy(window.document.URL);
+    const shareableUrl = `${window.location.origin}/voting/${this.voting.id}`;
+    console.log(shareableUrl);
+
+    this.clipboard.copy(shareableUrl);
     this.toaster.info('URL copied to Clipboard');
   }
 
   getUrl(): string {
-    return window.document.URL;
+    const shareableUrl = `${window.location.origin}/voting/${this.voting.id}`;
+    return shareableUrl;
   }
 }

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from './../services/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,10 +13,12 @@ import { VotingOption } from '../interfaces';
 export class VotingComponent implements OnInit {
   voting: Voting = null!;
   options: VotingOption[] = [];
+  voted = false;
 
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toaster: ToastrService
   ) {}
 
   async ngOnInit() {
@@ -25,12 +28,15 @@ export class VotingComponent implements OnInit {
       this.voting = await (await this.dataService.getVotingDetails(+id)).data;
       this.options =
         (await (await this.dataService.getVotingOptions(+id)).data) || [];
-      console.log('VOTING: ', this.voting);
-      console.log('Options: ', this.options);
     }
   }
 
-  vote(option: VotingOption) {
+  async vote(option: VotingOption) {
     console.log('VOTE: ', option);
+    const data = await this.dataService.voteForOption(`${option.id}`);
+    if (!data.error) {
+      this.toaster.success('Thanks for your vote!');
+      this.voted = true;
+    }
   }
 }
