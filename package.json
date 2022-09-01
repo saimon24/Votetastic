@@ -23,6 +23,8 @@
     "@sweetalert2/ngx-sweetalert2": "^11.0.0",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/line-clamp": "^0.4.0",
+    "chart.js": "^3.6.0",
+    "ng2-charts": "^4.0.0",
     "ngx-bootstrap": "^9.0.0",
     "ngx-toastr": "^15.0.0",
     "prettier": "^2.7.1",

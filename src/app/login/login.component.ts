@@ -2,7 +2,7 @@ import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from "ngx-toastr";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
     private toaster: ToastrService
   ) {
     this.form = this.fb.group({
-      email: ['saimon@devdactic.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required, Validators.minLength(6)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
     if (error) {
       // TODO show error alert
     } else {
-      this.router.navigateByUrl('/app', { replaceUrl: true })
+      this.router
+        .navigateByUrl('/app', { replaceUrl: true })
         .then(() => this.toaster.success('You signed in'));
     }
   }
