@@ -1,16 +1,11 @@
-import { Observable, zip } from 'rxjs';
-import {
-  FormGroup,
-  FormGroupName,
-  FormBuilder,
-  Validators,
-  FormArray,
-} from '@angular/forms';
-import { DataService } from './../../services/data.service';
+import { zip } from 'rxjs';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from '../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Voting } from 'src/app/interfaces';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-votings-details',
@@ -27,7 +22,8 @@ export class VotingsDetailsComponent implements OnInit {
     private dataService: DataService,
     private fb: FormBuilder,
     private toaster: ToastrService,
-    private router: Router
+    private router: Router,
+    private clipboard: Clipboard
   ) {
     this.form = this.fb.group({
       voting_question: ['', Validators.required],
@@ -39,6 +35,10 @@ export class VotingsDetailsComponent implements OnInit {
     this.formOptions = this.fb.group({
       options: this.fb.array([]),
     });
+  }
+
+  get options(): FormArray {
+    return this.formOptions.controls['options'] as FormArray;
   }
 
   async ngOnInit() {
@@ -68,10 +68,6 @@ export class VotingsDetailsComponent implements OnInit {
     await this.dataService.deleteVoting(this.voting.id);
     this.toaster.info('Voting deleted!');
     this.router.navigateByUrl('/app');
-  }
-
-  get options(): FormArray {
-    return this.formOptions.controls['options'] as FormArray;
   }
 
   addOption() {
@@ -110,5 +106,14 @@ export class VotingsDetailsComponent implements OnInit {
       console.log('AFTER ADD: ', res);
       this.toaster.success('Voting updated!');
     });
+  }
+
+  copyUrlToClipboard() {
+    this.clipboard.copy(window.document.URL);
+    this.toaster.info('URL copied to Clipboard');
+  }
+
+  getUrl(): string {
+    return window.document.URL;
   }
 }
