@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "plugins": ["prettier"],
+      "rules": {
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "prettier/prettier": "error"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended", "plugin:prettier/recommended"],
+      "plugins": ["prettier"],
+      "rules": {
+        "@angular-eslint/template/conditional-complexity": ["error", { "maxComplexity": 4 }],
+        "@angular-eslint/template/cyclomatic-complexity": ["error", { "maxComplexity": 5 }],
+        "@angular-eslint/template/no-duplicate-attributes": "error",
+        "@angular-eslint/template/use-track-by-function": "off",
+        "prettier/prettier": "error"
+      }
+    }
+  ]
+}
